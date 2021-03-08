@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:Page">
+    <jcr:content jcr:primaryType="nt:unstructured">
+        <actions jcr:primaryType="nt:unstructured">
+            <secondary jcr:primaryType="nt:unstructured">
+                <create jcr:primaryType="nt:unstructured">
+                    <items jcr:primaryType="nt:unstructured">
+                        <createmultilivecopy
+                                granite:comment="The actionlink uses the URI derived from the `href.uritemplate` value on the `data` node. The `href` attribute is  only used externally (e.g. HApi tests), not by the actionlink itself"
+                                granite:rel="cq-siteadmin-admin-createlivecopy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                href="/mnt/overlay/wcm/core/content/sites/createlivecopywizard.html${requestPathInfo.suffix}"
+                                icon="pages"
+                                rel="cq-siteadmin-admin-createlivecopy"
+                                relScope="collection"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Multi Live Copy "
+                                trackingElement="create live copy"
+                                trackingFeature="aem:sites:livecopy:create">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createmultilivecopywizard.html{+id}"/>
+                        </createmultilivecopy>
+                    </items>
+                </create>
+            </secondary>
+            <selection jcr:primaryType="nt:unstructured">
+                <create
+                        granite:class="foundation-collection-action"
+                        granite:rel="cq-siteadmin-admin-actions-create-activator"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/pulldown"
+                        icon="addCircle"
+                        text="Create"
+                        variant="actionBar">
+                    <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            foundation-collection-action="\{&quot;target&quot;: &quot;.cq-siteadmin-admin-childpages&quot;, &quot;activeSelectionCount&quot;: &quot;multiple&quot;}"/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <createcatalog
+                                granite:comment="The actionlink uses the URI derived from the `href.uritemplate` value on the `data` node. The `href` attribute is  only used externally (e.g. HApi tests), not by the actionlink itself"
+                                granite:rel="cq-siteadmin-admin-createcatalog"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                href="/mnt/overlay/commerce/gui/content/v2/catalogs/createcatalogwizard.html${requestPathInfo.suffix}"
+                                icon="fileTemplate"
+                                rel="cq-siteadmin-admin-createcatalog"
+                                relScope="collection"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Catalog">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/commerce/gui/content/v2/catalogs/createcatalogwizard.html{+id}"/>
+                        </createcatalog>
+                        <createworkflow
+                                granite:rel="cq-siteadmin-admin-createworkflow"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="multiple"
+                                icon="workflow"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Workflow">
+                            <granite:rendercondition
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="cq/gui/components/renderconditions/canreadworkflowmodels"/>
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/override/libs/wcm/core/content/common/startbulkworkflows.html{?item*}"/>
+                        </createworkflow>
+                        <createversion
+                                granite:rel="cq-siteadmin-admin-createversion"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.dialog"
+                                activeSelectionCount="multiple"
+                                icon="layers"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Version">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    nesting="hide"
+                                    src.uritemplate="/mnt/overlay/wcm/core/content/coral/common/createversiondialog.html{?item*}"/>
+                        </createversion>
+                        <createpage
+                                granite:comment="The actionlink uses the URI derived from the `href.uritemplate` value on the `data` node. The `href` attribute is  only used externally (e.g. HApi tests), not by the actionlink itself"
+                                granite:rel="cq-siteadmin-admin-createpage"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="single"
+                                href="/mnt/overlay/wcm/core/content/sites/createpagewizard.html${requestPathInfo.suffix}"
+                                icon="experience"
+                                rel="cq-siteadmin-admin-createpage"
+                                relScope="item"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Page"
+                                trackingElement="create page"
+                                trackingFeature="aem:sites:pages:create">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createpagewizard.html{+item}"/>
+                        </createpage>
+                        <createsite
+                                granite:comment="The actionlink uses the URI derived from the `href.uritemplate` value on the `data` node. The `href` attribute is  only used externally (e.g. HApi tests), not by the actionlink itself"
+                                granite:rel="cq-siteadmin-admin-createsite"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="single"
+                                href="/mnt/overlay/wcm/core/content/sites/createsitewizard.html${requestPathInfo.suffix}"
+                                icon="selectContainer"
+                                rel="cq-siteadmin-admin-createsite"
+                                relScope="item"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Site">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createsitewizard.html{+item}"/>
+                        </createsite>
+                        <createlivecopy
+                                granite:rel="cq-siteadmin-admin-createlivecopy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="single"
+                                icon="pages"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Live Copy"
+                                trackingElement="create live copy"
+                                trackingFeature="aem:sites:livecopy:create">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createlivecopywizard.html{+id}?source={item}"/>
+                        </createlivecopy>
+                        <createlaunch
+                                granite:rel="cq-siteadmin-admin-createlaunch"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="multiple"
+                                icon="launch"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Launch">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createlaunchwizard.html{+id}?source={item}"/>
+                        </createlaunch>
+                        <createlanguagecopy
+                                granite:rel="cq-siteadmin-admin-createlanguagecopy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="multiple"
+                                icon="project"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Language Copy">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createlanguagecopywizard.html?source={item}"/>
+                            <granite:rendercondition
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="cq/translation/languagecopyrendercondition"/>
+                        </createlanguagecopy>
+                        <createfolder
+                                granite:comment="The actionlink uses the URI derived from the `href.uritemplate` value on the `data` node. The `href` attribute is  only used externally (e.g. HApi tests), not by the actionlink itself"
+                                granite:rel="cq-siteadmin-admin-createfolder"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.dialog"
+                                activeSelectionCount="single"
+                                href="/mnt/overlay/wcm/core/content/coral/common/createfolderdialog.html${requestPathInfo.suffix}"
+                                icon="folder"
+                                rel="cq-siteadmin-admin-createfolder"
+                                relScope="item"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Folder">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    nesting="hide"
+                                    src.uritemplate="/mnt/overlay/wcm/core/content/coral/common/createfolderdialog.html{+item}"/>
+                        </createfolder>
+                        <createcsvexport
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="single"
+                                icon="report"
+                                rel="cq-siteadmin-admin-createcsvexport"
+                                relScope="none"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="CSV Report">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createcsvexport.html{+id}"/>
+                        </createcsvexport>
+                        <createmultilivecopy
+                                granite:rel="cq-siteadmin-admin-createlivecopy"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/collection/actionlink"
+                                action="foundation.link"
+                                activeSelectionCount="single"
+                                icon="pages"
+                                target=".cq-siteadmin-admin-childpages"
+                                text="Multi Live Copy">
+                            <data
+                                    jcr:primaryType="nt:unstructured"
+                                    href.uritemplate="/mnt/overlay/wcm/core/content/sites/createmultilivecopywizard.html{+id}?source={item}"/>
+                        </createmultilivecopy>
+                    </items>
+                </create>
+            </selection>
+        </actions>
+    </jcr:content>
+</jcr:root>
