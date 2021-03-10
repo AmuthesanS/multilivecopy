@@ -191,6 +191,9 @@
                                                                 fieldDescription="Upload the csv file containing all live copies with their properties"
                                                                 name="csvfile"
                                                                 required="true"
+                                                                autoStart="true"
+                                                                async="true"
+                                                                uploadUrl="/tmp/multilivecopy"
                                                                 text="CSV file"/>
                                                         <excludesubpages
                                                                 granite:rel="cq-siteadmin-admin-createmultilivecopy-excudesubpages"
