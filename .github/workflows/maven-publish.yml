@@ -16,8 +16,6 @@ jobs:
     - uses: actions/checkout@v2
     - run: git config --global user.email "amuthesan@gmail.com"
     - run: git config --global user.name "AmuthesanS"
-    - run: git fetch
-    - run: git checkout origin/master
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
@@ -35,7 +33,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
-      run: mvn -B clean release:prepare release:perform -Prelease
+      run: mvn -B release:prepare release:perform
       env:
         GITHUB_TOKEN: ${{ github.token }}
       
