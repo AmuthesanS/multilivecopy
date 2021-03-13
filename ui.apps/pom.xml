@@ -110,20 +110,6 @@
         </dependency>
 
         <dependency>
-            <groupId>amu.aem.multilivecopy</groupId>
-            <artifactId>multilivecopy.ui.frontend</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
-
-        <dependency>
-            <groupId>amu.aem.multilivecopy</groupId>
-            <artifactId>multilivecopy.ui.apps.structure</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
-
-        <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>aem-sdk-api</artifactId>
         </dependency>
