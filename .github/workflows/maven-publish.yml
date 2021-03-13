@@ -31,6 +31,6 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
-      run: mvn -B clean release:prepare release:perform -Prelease,ossrh,it-basic
+      run: mvn -B clean release:prepare release:perform -Prelease
       
     
