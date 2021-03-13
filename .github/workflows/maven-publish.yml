@@ -22,8 +22,8 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B clean install --file pom.xml
-
+      run: mvn -B clean release:prepare release:perform -Prelease,ossrh,it-basic
+      
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
