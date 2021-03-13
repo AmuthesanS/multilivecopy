@@ -265,7 +265,7 @@ Bundle-DocURL:
                             </jackrabbit-nodetypes>
                             <jackrabbit-filter>
                                 <options>
-                                    <validRoots>/apps/wcm/core/content</validRoots>
+                                    <validRoots>/apps/wcm/core/content,/apps/cq</validRoots>
                                 </options>
                             </jackrabbit-filter>
                         </validatorsSettings>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Experience Frgments"
+        sling:resourceType="granite/ui/components/coral/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/admin/page/viewport"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[coralui3,granite.ui.coral.foundation]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/page/body">
+            <items jcr:primaryType="nt:unstructured">
+                <form
+                    granite:id="cq-siteadmin-admin-createlivecopy-form"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                    action="/bin/wcmcommand"
+                    foundationForm="{Boolean}true"
+                    maximized="{Boolean}true"
+                    method="post"
+                    novalidate="{Boolean}true"
+                    style="vertical">
+                    <successresponse
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Live Copy created"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/responses/openprompt"
+                        open="/bin/wcmcommand?cmd=open&amp;_charset_=utf-8&amp;path={Path}"
+                        redirect="/aem/experience-fragments.html${granite:encodeURIPath(requestPathInfo.suffix)}"
+                        text="You can either open the new Live Copy or return to Sites."/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <charset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            name="_charset_"
+                            value="utf-8"/>
+                        <cmd
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            ignoreData="{Boolean}true"
+                            name="cmd"
+                            value="createMultiLiveCopy"/>
+                        <wizard
+                            granite:rel="cq-siteadmin-admin-createlivecopy"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Create Live Copy"
+                            sling:resourceType="granite/ui/components/coral/foundation/wizard"
+                            cancelHref="${empty header.Referer ? granite:concat(&quot;/aem/experience-fragments.html&quot;, granite:encodeURIPath(requestPathInfo.suffix)) : header.Referer}">
+                            <items jcr:primaryType="nt:unstructured">
+                                <sourceStep
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Live Copy From"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    maximized="{Boolean}true">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <source
+                                            granite:rel="cq-live-copy-from"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/advancedselect"
+                                            maximized="{Boolean}true"
+                                            name="srcPath"
+                                            required="{Boolean}true">
+                                            <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/columnview"
+                                                itemprop="item"
+                                                itemResourceType="cq/gui/components/coral/admin/page/simplecolumnitem"
+                                                layoutId="columns"
+                                                limit="{Long}40"
+                                                loadAncestors="{Boolean}true"
+                                                path="${requestPathInfo.suffix}"
+                                                previewSrc="/libs/wcm/core/content/sites/pagecolumnpreview.html{+id}"
+                                                rootPath="${granite:encodeURIPath(requestPathInfo.suffix)}"
+                                                selectionCount="single"
+                                                size="{Long}40"
+                                                src="/mnt/overlay/wcm/core/content/sites/createlivecopywizard/jcr:content/body/items/form/items/wizard/items/sourceStep/items/source/field{.offset,limit}.html{+id}">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/common/wcm/datasources/childpages"
+                                                    exclude="/content/(catalogs|dam|launches|mac|publications|usergenerated|communities|community-components|community-templates|forms|projects|phonegap|mobileapps|screens/(svc|blueprints))(/.*)*"
+                                                    limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
+                                                    offset="${requestPathInfo.selectors[0]}"
+                                                    path="${requestPathInfo.suffix}"/>
+                                            </field>
+                                        </source>
+                                    </items>
+                                    <parentConfig jcr:primaryType="nt:unstructured">
+                                        <next
+                                            granite:class="foundation-wizard-control"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                            disabled="{Boolean}true"
+                                            text="Next"
+                                            variant="primary">
+                                            <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                foundation-wizard-control-action="next"/>
+                                        </next>
+                                    </parentConfig>
+                                    <granite:rendercondition
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/simple"
+                                        expression="${empty param.source}"/>
+                                </sourceStep>
+                                <livecopyproperties
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Live Copy Properties"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <fixedColumnContainer
+                                            granite:class="cq-live-copy-properties"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <fixedColumn
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <hidden
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/experience-fragments/components/admin/createlivecopywizard/properties"/>
+                                                        <csvinput
+                                                            granite:rel="cq-siteadmin-admin-createmultilivecopy-livecopycsvfile"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/fileupload"
+                                                            async="true"
+                                                            autoStart="true"
+                                                            fieldDescription="Upload the csv file containing all live copies with their properties"
+                                                            name="csvfile"
+                                                            required="true"
+                                                            text="CSV file"
+                                                            uploadUrl="/tmp/multilivecopy"/>
+                                                        <excludesubpages
+                                                            granite:rel="cq-siteadmin-admin-createlivecopy-excudesubpages"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            checked="{Boolean}false"
+                                                            fieldDescription="If checked, sub pages of selected page above will not be copied and it will be possible to select them individually as new Live Copy."
+                                                            name="shallow"
+                                                            text="Exclude sub pages"
+                                                            value="true"/>
+                                                        <rolloutconfigs
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            emptyText="Select"
+                                                            fieldDescription="Select some optional Rollout Configs."
+                                                            fieldLabel="Rollout Configs"
+                                                            multiple="{Boolean}true"
+                                                            name="cq:rolloutConfigs"
+                                                            translateOptions="{Boolean}[true]">
+                                                            <datasource
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="wcm/msm/components/datasources/rolloutconfig"/>
+                                                        </rolloutconfigs>
+                                                        <hiddenSrcPath
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="srcPath"
+                                                            value="${param.source}">
+                                                            <granite:rendercondition
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/renderconditions/simple"
+                                                                expression="${not empty param.source}"/>
+                                                        </hiddenSrcPath>
+                                                        <hiddenDestPath
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="destPath"
+                                                            value="${requestPathInfo.suffix}"/>
+                                                    </items>
+                                                </fixedColumn>
+                                            </items>
+                                        </fixedColumnContainer>
+                                    </items>
+                                    <parentConfig jcr:primaryType="nt:unstructured">
+                                        <next
+                                            granite:class="foundation-wizard-control"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                            disabled="{Boolean}true"
+                                            text="Create"
+                                            type="submit"
+                                            variant="primary">
+                                            <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                foundation-wizard-control-action="next"/>
+                                        </next>
+                                    </parentConfig>
+                                </livecopyproperties>
+                            </items>
+                        </wizard>
+                    </items>
+                </form>
+            </items>
+        </body>
+    </jcr:content>
+</jcr:root>
