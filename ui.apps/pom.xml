@@ -53,12 +53,6 @@
                     <name>multilivecopy.ui.apps</name>
                     <packageType>application</packageType>
                     <accessControlHandling>merge</accessControlHandling>
-                    <repositoryStructurePackages>
-                        <repositoryStructurePackage>
-                            <groupId>amu.aem.multilivecopy</groupId>
-                            <artifactId>multilivecopy.ui.apps.structure</artifactId>
-                        </repositoryStructurePackage>
-                    </repositoryStructurePackages>
                     <dependencies>
                     </dependencies>
                 </configuration>

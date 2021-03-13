@@ -68,18 +68,6 @@
                             <artifactId>multilivecopy.core</artifactId>
                             <target>/apps/multilivecopy-packages/application/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>amu.aem.multilivecopy</groupId>
-                            <artifactId>multilivecopy.ui.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/multilivecopy-packages/content/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>amu.aem.multilivecopy</groupId>
-                            <artifactId>multilivecopy.ui.config</artifactId>
-                            <type>zip</type>
-                            <target>/apps/multilivecopy-packages/application/install</target>
-                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
@@ -173,18 +161,6 @@
         <dependency>
             <groupId>amu.aem.multilivecopy</groupId>
             <artifactId>multilivecopy.ui.apps</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>amu.aem.multilivecopy</groupId>
-            <artifactId>multilivecopy.ui.content</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>amu.aem.multilivecopy</groupId>
-            <artifactId>multilivecopy.ui.config</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
