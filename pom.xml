@@ -607,4 +607,13 @@ Bundle-DocURL:
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub AmuthesanS Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/AmuthesanS/multilivecopy</url>
+        </repository>
+    </distributionManagement>
+
+
 </project>
