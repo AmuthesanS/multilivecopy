@@ -22,7 +22,7 @@
     <parent>
         <groupId>amu.aem.multilivecopy</groupId>
         <artifactId>multilivecopy</artifactId>
-        <version>1.0.7-SNAPSHOT</version>
+        <version>1.0.7</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
