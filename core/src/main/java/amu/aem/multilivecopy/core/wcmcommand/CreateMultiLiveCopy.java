@@ -68,7 +68,7 @@ public class CreateMultiLiveCopy implements WCMCommand {
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(cvsSplitBy);
                     params.put("title", data[0]);
-                    params.put("name", data[1]);
+                    params.put("label", data[1]);
                     params.put("cmd", "createLiveCopy");
                     HttpServletRequest request = requestResponseFactory.createRequest(METHOD_POST, "/bin/wcmcommand", params);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
