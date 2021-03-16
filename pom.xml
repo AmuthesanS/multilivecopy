@@ -19,7 +19,7 @@
     <groupId>amu.aem.multilivecopy</groupId>
     <artifactId>multilivecopy</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${project.version}</version>
     <description>Multi live copy</description>
 
     <scm>
@@ -37,6 +37,7 @@
     </modules>
 
     <properties>
+        <project.version>0.0.1-SNAPSHOT</project.version>
         <aem.host>localhost</aem.host>
         <aem.port>4502</aem.port>
         <aem.publish.host>localhost</aem.publish.host>
