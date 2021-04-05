@@ -2,11 +2,14 @@ package amu.aem.multilivecopy.core.wcmcommand;
 
 import com.day.cq.commons.servlets.HtmlStatusResponseHelper;
 import com.day.cq.contentsync.handler.util.RequestResponseFactory;
+import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.commands.WCMCommand;
 import com.day.cq.wcm.api.commands.WCMCommandContext;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.ModifiableValueMap;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HtmlResponse;
 import org.apache.sling.engine.SlingRequestProcessor;
@@ -65,15 +68,40 @@ public class CreateMultiLiveCopy implements WCMCommand {
                 BufferedReader br = new BufferedReader(inputStreamReader);
                 String line;
                 String cvsSplitBy = ",";
+                boolean isTitle = true;
+                String[] csvTitle = null;
                 while ((line = br.readLine()) != null) {
                     String[] data = line.split(cvsSplitBy);
-                    params.put("title", data[0]);
-                    params.put("label", data[1]);
-                    params.put("cmd", "createLiveCopy");
-                    HttpServletRequest request = requestResponseFactory.createRequest(METHOD_POST, "/bin/wcmcommand", params);
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    HttpServletResponse httpResponse = requestResponseFactory.createResponse(out);
-                    slingRequestProcessor.processRequest(request, httpResponse, slingHttpServletRequest.getResourceResolver());
+                    if (isTitle) {
+                        csvTitle = data;
+                        isTitle = false;
+                    } else {
+                        //title
+                        params.put("title", data[0]);
+                        //pagename
+                        params.put("label", data[1]);
+                        Resource destinationRes = resourceResolver.getResource(destination);
+                        Resource childRes = destinationRes.getChild(data[1]);
+                        if ("y".equalsIgnoreCase(data[2])) {
+                            //delete the existing livecopy page
+                            if (childRes != null) {
+                                resourceResolver.delete(childRes);
+                                resourceResolver.commit();
+                            }
+                        }
+                        params.put("cmd", "createLiveCopy");
+                        HttpServletRequest request = requestResponseFactory.createRequest(METHOD_POST, "/bin/wcmcommand", params);
+                        ByteArrayOutputStream out = new ByteArrayOutputStream();
+                        HttpServletResponse httpResponse = requestResponseFactory.createResponse(out);
+                        slingRequestProcessor.processRequest(request, httpResponse, slingHttpServletRequest.getResourceResolver());
+                        if (data.length > 3) {
+                            ModifiableValueMap childModValueMap = childRes.adaptTo(Page.class).getContentResource().adaptTo(ModifiableValueMap.class);
+                            for (int i = 3; i < data.length; i++) {
+                                childModValueMap.put(csvTitle[i], data[i]);
+                            }
+                            resourceResolver.commit();
+                        }
+                    }
                 }
             }
         } catch (IOException | ServletException e) {
