@@ -71,6 +71,7 @@ public class CreateMultiLiveCopy implements WCMCommand {
                 boolean isTitle = true;
                 String[] csvTitle = null;
                 while ((line = br.readLine()) != null) {
+                    //addin test comment
                     String[] data = line.split(cvsSplitBy);
                     if (isTitle) {
                         csvTitle = data;

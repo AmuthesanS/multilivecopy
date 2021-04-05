@@ -4,14 +4,12 @@
 name: Maven Package
 
 on:
-  release:
-    types: [created]
-
+ push:
+    tags:
+      - multilivecopy-1.*
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - run: git config --global user.email "amuthesan@gmail.com"
