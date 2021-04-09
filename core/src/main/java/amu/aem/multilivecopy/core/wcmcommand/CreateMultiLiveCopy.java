@@ -82,8 +82,8 @@ public class CreateMultiLiveCopy implements WCMCommand {
                         //pagename
                         params.put("label", data[1]);
                         Resource destinationRes = resourceResolver.getResource(destination);
-                        Resource childRes = destinationRes.getChild(data[1]);
                         if ("y".equalsIgnoreCase(data[2])) {
+                            Resource childRes = destinationRes.getChild(data[1]);
                             //delete the existing livecopy page
                             if (childRes != null) {
                                 resourceResolver.delete(childRes);
@@ -96,6 +96,7 @@ public class CreateMultiLiveCopy implements WCMCommand {
                         HttpServletResponse httpResponse = requestResponseFactory.createResponse(out);
                         slingRequestProcessor.processRequest(request, httpResponse, slingHttpServletRequest.getResourceResolver());
                         if (data.length > 3) {
+                            Resource childRes = destinationRes.getChild(data[1]);
                             ModifiableValueMap childModValueMap = childRes.adaptTo(Page.class).getContentResource().adaptTo(ModifiableValueMap.class);
                             for (int i = 3; i < data.length; i++) {
                                 childModValueMap.put(csvTitle[i], data[i]);
