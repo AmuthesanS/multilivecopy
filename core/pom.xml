@@ -19,7 +19,7 @@
     <parent>
         <groupId>amu.aem.multilivecopy</groupId>
         <artifactId>multilivecopy</artifactId>
-        <version>1.0.9-SNAPSHOT</version>
+        <version>1.0.10-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>multilivecopy.core</artifactId>
