@@ -22,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,7 @@ public class CreateMultiLiveCopy implements WCMCommand {
                             for (int i = 3; i < data.length; i++) {
                                 childModValueMap.put(csvTitle[i], data[i]);
                             }
+                            childModValueMap.put("cq:propertyInheritanceCancelled", Arrays.copyOfRange(csvTitle, 3, csvTitle.length));
                             resourceResolver.commit();
                         }
                     }
